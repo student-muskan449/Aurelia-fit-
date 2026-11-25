@@ -1,0 +1,1986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURELIA FIT — Luxury Home Fitness & Gym Gear</title>
+  
+  <!-- Google Fonts: Playfair Display (Headings) & Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- External CSS File Link -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Inline Style Block containing the style.css logic to ensure complete single-file execution in the web environment while keeping modular style definition -->
+  <style>
+    /* ==========================================================================
+       AURELIA FIT - STYLESHEET (style.css)
+       ========================================================================== */
+
+    /* --------------------------------------------------------------------------
+       1. CSS VARIABLES & THEME CONFIGURATION
+       -------------------------------------------------------------------------- */
+    :root {
+      /* Color Palette */
+      --color-bg: #FFFDF8;             /* Bright Ivory/White main background */
+      --color-surface: #F7F4EC;        /* Light warm surface for cards/containers */
+      --color-surface-hover: #EFEBE0;  /* Deeper surface state */
+      --color-text-main: #0B1B33;      /* Deep Navy text for high legibility */
+      --color-text-muted: #53627A;     /* Muted body text */
+      --color-gold: #C9A24B;           /* Champagne Gold accent */
+      --color-gold-light: #EBD399;     /* Light Champagne accent */
+      --color-coral: #FF5A4F;          /* Vivid contrast color for primary CTAs */
+      --color-coral-hover: #E0463C;    /* Hover state for coral CTAs */
+      --color-white: #FFFFFF;          /* Pure White */
+      --color-border: #E5DFC8;         /* Subtle gold-toned border */
+      
+      /* Typography */
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      
+      /* Shadows & Transitions */
+      --shadow-sm: 0 4px 12px rgba(11, 27, 51, 0.04);
+      --shadow-md: 0 8px 24px rgba(11, 27, 51, 0.08);
+      --shadow-lg: 0 16px 40px rgba(11, 27, 51, 0.12);
+      --shadow-gold: 0 8px 25px rgba(201, 162, 75, 0.25);
+      --shadow-coral: 0 8px 25px rgba(255, 90, 79, 0.35);
+      
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-full: 9999px;
+      
+      --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-base: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* --------------------------------------------------------------------------
+       2. BASE & RESET STYLES
+       -------------------------------------------------------------------------- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select {
+      font: inherit;
+    }
+
+    /* Focus styling for accessible keyboard navigation */
+    a:focus-visible, button:focus-visible, input:focus-visible, label:focus-visible {
+      outline: 2px solid var(--color-coral);
+      outline-offset: 4px;
+    }
+
+    /* Layout Utility Containers */
+    .container {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 3.5rem auto;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-body);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--color-gold);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--color-text-main);
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      color: var(--color-text-muted);
+      font-size: 1.0625rem;
+    }
+
+    /* Gold Line Divider */
+    .gold-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+      border: none;
+      margin: 2rem 0;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 2rem;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      letter-spacing: 0.5px;
+      transition: all var(--transition-base);
+      cursor: pointer;
+      border: 2px solid transparent;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--color-coral);
+      color: var(--color-white);
+      box-shadow: var(--shadow-coral);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-coral-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(255, 90, 79, 0.45);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border-color: var(--color-gold);
+      color: var(--color-text-main);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--color-gold);
+      color: var(--color-white);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .btn-secondary {
+      background-color: var(--color-text-main);
+      color: var(--color-white);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--color-gold);
+      color: var(--color-text-main);
+      transform: translateY(-2px);
+    }
+
+    /* --------------------------------------------------------------------------
+       3. HEADER & GLASSMorphic STICKY NAVBAR
+       -------------------------------------------------------------------------- */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 253, 248, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(201, 162, 75, 0.2);
+      transition: background-color var(--transition-fast);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .logo {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--color-text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo span {
+      color: var(--color-gold);
+      font-family: var(--font-body);
+      font-weight: 300;
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2.25rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--color-text-main);
+      position: relative;
+      padding: 0.5rem 0;
+      transition: color var(--transition-fast);
+    }
+
+    /* Underline slide hover animation */
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--color-gold);
+      transition: width var(--transition-base);
+    }
+
+    .nav-link:hover {
+      color: var(--color-gold);
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Mobile Menu Toggle (CSS Only Checkbox Hack) */
+    .nav-checkbox {
+      display: none;
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background-color: var(--color-text-main);
+      border-radius: 2px;
+      transition: all var(--transition-fast);
+    }
+
+    /* --------------------------------------------------------------------------
+       4. MARQUEE TICKER STRIP
+       -------------------------------------------------------------------------- */
+    .ticker-wrap {
+      width: 100%;
+      background-color: var(--color-text-main);
+      color: var(--color-surface);
+      overflow: hidden;
+      padding: 0.65rem 0;
+      white-space: nowrap;
+      border-bottom: 1px solid var(--color-gold);
+    }
+
+    .ticker-move {
+      display: inline-block;
+      animation: marquee 25s linear infinite;
+    }
+
+    .ticker-item {
+      display: inline-block;
+      font-size: 0.8125rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 0 2rem;
+    }
+
+    .ticker-item span {
+      color: var(--color-gold);
+      margin-left: 2rem;
+    }
+
+    /* --------------------------------------------------------------------------
+       5. HERO SECTION
+       -------------------------------------------------------------------------- */
+    .hero {
+      position: relative;
+      padding: 5rem 0 6rem 0;
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(255,253,248,0.92) 0%, rgba(247,244,236,0.7) 100%), 
+                  url('https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-content {
+      animation: slideUpFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background-color: rgba(201, 162, 75, 0.12);
+      border: 1px solid var(--color-gold);
+      border-radius: var(--radius-full);
+      color: var(--color-text-main);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background-color: var(--color-gold);
+      border-radius: 50%;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 3.75rem;
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--color-text-main);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--color-gold);
+      font-weight: 400;
+    }
+
+    .hero-description {
+      font-size: 1.125rem;
+      color: var(--color-text-muted);
+      margin-bottom: 2.25rem;
+      max-width: 540px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    /* Pulsing Glow Animation on Primary CTA */
+    .btn-pulse {
+      animation: pulseGlow 2.5s infinite;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--color-border);
+      background-color: var(--color-white);
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Floating Dumbbell Floating Animation Graphic */
+    .floating-dumbbell-card {
+      position: absolute;
+      bottom: -20px;
+      left: -20px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--color-gold);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: var(--shadow-md);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .floating-icon {
+      width: 48px;
+      height: 48px;
+      background-color: var(--color-surface);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--color-gold);
+    }
+
+    .floating-info h4 {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+    }
+
+    .floating-info p {
+      font-size: 0.775rem;
+      color: var(--color-text-muted);
+    }
+
+    /* --------------------------------------------------------------------------
+       6. CATALOG & PURE CSS CATEGORY FILTER
+       -------------------------------------------------------------------------- */
+    .catalog-section {
+      padding: 6rem 0;
+      background-color: var(--color-bg);
+    }
+
+    /* Radio Inputs for Pure CSS Filtering */
+    .filter-radio {
+      display: none;
+    }
+
+    .catalog-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .catalog-tab-label {
+      padding: 0.7rem 1.5rem;
+      border-radius: var(--radius-full);
+      background-color: var(--color-surface);
+      color: var(--color-text-muted);
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border: 1px solid var(--color-border);
+    }
+
+    .catalog-tab-label:hover {
+      background-color: var(--color-gold-light);
+      color: var(--color-text-main);
+    }
+
+    /* Tab active states controlled via CSS :checked selector */
+    #tab-all:checked ~ .catalog-tabs label[for="tab-all"],
+    #tab-weights:checked ~ .catalog-tabs label[for="tab-weights"],
+    #tab-cardio:checked ~ .catalog-tabs label[for="tab-cardio"],
+    #tab-yoga:checked ~ .catalog-tabs label[for="tab-yoga"],
+    #tab-racks:checked ~ .catalog-tabs label[for="tab-racks"] {
+      background-color: var(--color-text-main);
+      color: var(--color-white);
+      border-color: var(--color-text-main);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Filter Logic using CSS Selectors */
+    #tab-weights:checked ~ .catalog-grid .product-card:not([data-category="weights"]),
+    #tab-cardio:checked ~ .catalog-grid .product-card:not([data-category="cardio"]),
+    #tab-yoga:checked ~ .catalog-grid .product-card:not([data-category="yoga"]),
+    #tab-racks:checked ~ .catalog-grid .product-card:not([data-category="racks"]) {
+      display: none;
+    }
+
+    /* Product Card Styling */
+    .product-card {
+      background-color: var(--color-white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .product-image-container {
+      position: relative;
+      height: 240px;
+      overflow: hidden;
+      background-color: var(--color-surface);
+    }
+
+    .product-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .product-card:hover .product-image-container img {
+      transform: scale(1.08);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background-color: var(--color-text-main);
+      color: var(--color-gold);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-full);
+      z-index: 2;
+    }
+
+    .product-content {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-rating {
+      color: var(--color-gold);
+      font-size: 0.8125rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .product-rating span {
+      color: var(--color-text-muted);
+      font-size: 0.75rem;
+    }
+
+    .product-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--color-text-main);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-desc {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .product-spec {
+      display: inline-block;
+      font-size: 0.75rem;
+      background-color: var(--color-surface);
+      color: var(--color-text-main);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      margin-bottom: 1.25rem;
+      font-weight: 500;
+    }
+
+    .product-footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-surface);
+    }
+
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+    }
+
+    .btn-add-cart {
+      padding: 0.5rem 1rem;
+      font-size: 0.8125rem;
+      border-radius: var(--radius-full);
+      background-color: var(--color-surface);
+      color: var(--color-text-main);
+      border: 1px solid var(--color-border);
+      transition: all var(--transition-fast);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-add-cart:hover {
+      background-color: var(--color-coral);
+      color: var(--color-white);
+      border-color: var(--color-coral);
+    }
+
+    /* --------------------------------------------------------------------------
+       7. DUMBBELL WEIGHT INCREMENT GUIDE (CSS-ONLY INTERACTIVE)
+       -------------------------------------------------------------------------- */
+    .guide-section {
+      padding: 6rem 0;
+      background-color: var(--color-surface);
+      position: relative;
+    }
+
+    .guide-selector-wrap {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .guide-radio {
+      display: none;
+    }
+
+    .guide-label {
+      padding: 0.85rem 2rem;
+      border-radius: var(--radius-md);
+      background-color: var(--color-white);
+      border: 2px solid var(--color-border);
+      color: var(--color-text-main);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-align: center;
+    }
+
+    .guide-label:hover {
+      border-color: var(--color-gold);
+    }
+
+    /* Selector dynamic toggling */
+    #guide-beginner:checked ~ .guide-selector-wrap label[for="guide-beginner"],
+    #guide-intermediate:checked ~ .guide-selector-wrap label[for="guide-intermediate"],
+    #guide-advanced:checked ~ .guide-selector-wrap label[for="guide-advanced"] {
+      border-color: var(--color-gold);
+      background-color: var(--color-text-main);
+      color: var(--color-gold);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .guide-content-box {
+      background-color: var(--color-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      padding: 3rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .guide-panel {
+      display: none;
+      animation: fadeIn 0.5s ease-in-out forwards;
+    }
+
+    /* Show corresponding guide panel based on checked radio */
+    #guide-beginner:checked ~ .guide-content-box #panel-beginner,
+    #guide-intermediate:checked ~ .guide-content-box #panel-intermediate,
+    #guide-advanced:checked ~ .guide-content-box #panel-advanced {
+      display: block;
+    }
+
+    .guide-panel-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .guide-info-list {
+      list-style: none;
+      margin: 1.5rem 0;
+    }
+
+    .guide-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .guide-info-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: rgba(201, 162, 75, 0.15);
+      color: var(--color-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.875rem;
+      flex-shrink: 0;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .comparison-table th, .comparison-table td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--color-surface);
+      font-size: 0.9rem;
+    }
+
+    .comparison-table th {
+      background-color: var(--color-surface);
+      font-weight: 600;
+      color: var(--color-text-main);
+    }
+
+    /* --------------------------------------------------------------------------
+       8. BUNDLES / COMPACT HOME GYM SETUP
+       -------------------------------------------------------------------------- */
+    .bundles-section {
+      padding: 6rem 0;
+      background-color: var(--color-bg);
+    }
+
+    .bundles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .bundle-card {
+      background-color: var(--color-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform var(--transition-base);
+    }
+
+    .bundle-card:hover {
+      transform: translateY(-6px);
+    }
+
+    /* Highlighted Pro Bundle */
+    .bundle-card.popular {
+      border: 2px solid var(--color-gold);
+      box-shadow: var(--shadow-gold);
+      transform: scale(1.04);
+    }
+
+    .bundle-card.popular:hover {
+      transform: scale(1.04) translateY(-6px);
+    }
+
+    .popular-tag {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--color-gold);
+      color: var(--color-text-main);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 0.4rem 1.25rem;
+      border-radius: var(--radius-full);
+    }
+
+    .bundle-name {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .bundle-desc {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .bundle-price {
+      font-size: 2.75rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: baseline;
+      gap: 0.25rem;
+    }
+
+    .bundle-price span {
+      font-size: 0.9375rem;
+      color: var(--color-text-muted);
+      font-weight: 400;
+    }
+
+    .bundle-features {
+      list-style: none;
+      margin-bottom: 2rem;
+      flex-grow: 1;
+    }
+
+    .bundle-features li {
+      padding: 0.6rem 0;
+      font-size: 0.9375rem;
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-bottom: 1px dashed var(--color-surface);
+    }
+
+    .bundle-features li::before {
+      content: '✓';
+      color: var(--color-gold);
+      font-weight: bold;
+    }
+
+    /* --------------------------------------------------------------------------
+       9. WHY CHOOSE US (FEATURE BLOCKS)
+       -------------------------------------------------------------------------- */
+    .why-section {
+      padding: 5rem 0;
+      background-color: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .feature-icon-wrap {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1.25rem auto;
+      border-radius: 50%;
+      background-color: var(--color-white);
+      border: 1px solid var(--color-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-gold);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .feature-title {
+      font-family: var(--font-heading);
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-desc {
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+    }
+
+    /* --------------------------------------------------------------------------
+       10. TESTIMONIALS
+       -------------------------------------------------------------------------- */
+    .testimonials-section {
+      padding: 6rem 0;
+      background-color: var(--color-bg);
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .testimonial-card {
+      background-color: var(--color-white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .testimonial-stars {
+      color: var(--color-gold);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .testimonial-quote {
+      font-style: italic;
+      color: var(--color-text-main);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--color-gold);
+    }
+
+    .author-info h5 {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--color-text-main);
+    }
+
+    .author-info p {
+      font-size: 0.775rem;
+      color: var(--color-gold);
+      font-weight: 500;
+    }
+
+    /* --------------------------------------------------------------------------
+       11. NEWSLETTER STRIP
+       -------------------------------------------------------------------------- */
+    .newsletter-section {
+      padding: 4.5rem 0;
+      background-color: var(--color-text-main);
+      color: var(--color-white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .newsletter-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .newsletter-title {
+      font-family: var(--font-heading);
+      font-size: 2.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .newsletter-desc {
+      color: var(--color-gold-light);
+      font-size: 0.9375rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .newsletter-input {
+      flex-grow: 1;
+      padding: 0.9rem 1.25rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-gold);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--color-white);
+      font-size: 0.9375rem;
+    }
+
+    .newsletter-input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* --------------------------------------------------------------------------
+       12. FOOTER
+       -------------------------------------------------------------------------- */
+    .footer {
+      background-color: #071224;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 5rem 0 2rem 0;
+      font-size: 0.875rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .footer-brand .logo {
+      color: var(--color-white);
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand p {
+      max-width: 320px;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      transition: background-color var(--transition-fast);
+    }
+
+    .social-icon:hover {
+      background-color: var(--color-gold);
+      color: var(--color-text-main);
+    }
+
+    .footer-col h4 {
+      color: var(--color-white);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+      font-family: var(--font-heading);
+      letter-spacing: 0.5px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links a {
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--color-gold);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-to-top {
+      color: var(--color-gold);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* --------------------------------------------------------------------------
+       13. KEYFRAME ANIMATIONS
+       -------------------------------------------------------------------------- */
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 8px 25px rgba(255, 90, 79, 0.35); }
+      50% { box-shadow: 0 8px 35px rgba(255, 90, 79, 0.7); }
+    }
+
+    @keyframes slideUpFade {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --------------------------------------------------------------------------
+       14. RESPONSIVE MEDIA QUERIES
+       -------------------------------------------------------------------------- */
+
+    /* Tablet & Medium Screens (max-width: 1024px) */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .bundles-grid, .testimonials-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .bundle-card.popular {
+        transform: none;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .newsletter-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Mobile Screens (max-width: 768px) */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background-color: var(--color-bg);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        border-bottom: 1px solid var(--color-border);
+        transform: translateY(-150%);
+        transition: transform var(--transition-base);
+        box-shadow: var(--shadow-md);
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      /* Checkbox hack to open mobile nav menu */
+      .nav-checkbox:checked ~ .nav-links {
+        transform: translateY(0);
+      }
+
+      .nav-checkbox:checked ~ .nav-hamburger span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .nav-checkbox:checked ~ .nav-hamburger span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-checkbox:checked ~ .nav-hamburger span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+
+      .hero-title {
+        font-size: 2.75rem;
+      }
+
+      .guide-panel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+    }
+
+    /* Accessibility: Respect Reduced Motion Preference */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+     1. STICKY GLASSMORPHIC NAVBAR
+     ========================================================================== -->
+  <header class="header">
+    <div class="container nav-container">
+      <!-- Brand Logo -->
+      <a href="#" class="logo">
+        AURELIA <span>FIT</span>
+      </a>
+
+      <!-- Mobile Checkbox Toggle (CSS Hack) -->
+      <input type="checkbox" id="nav-toggle" class="nav-checkbox" aria-label="Toggle navigation menu">
+      <label for="nav-toggle" class="nav-hamburger" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <!-- Navigation Links -->
+      <ul class="nav-links">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#catalog" class="nav-link">Catalog</a></li>
+        <li><a href="#weight-guide" class="nav-link">Weight Guide</a></li>
+        <li><a href="#bundles" class="nav-link">Gym Bundles</a></li>
+        <li><a href="#why-us" class="nav-link">Why Us</a></li>
+      </ul>
+
+      <!-- CTA Button -->
+      <div class="nav-cta">
+        <a href="#catalog" class="btn btn-primary" style="padding: 0.6rem 1.4rem; font-size: 0.85rem;">SHOP NOW</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+       2. MARQUEE TICKER STRIP
+       ========================================================================== -->
+    <div class="ticker-wrap" aria-hidden="true">
+      <div class="ticker-move">
+        <div class="ticker-item">FREE WEIGHTS <span>•</span></div>
+        <div class="ticker-item">CARDIO GEAR <span>•</span></div>
+        <div class="ticker-item">YOGA & RECOVERY <span>•</span></div>
+        <div class="ticker-item">FUNCTIONAL RACKS <span>•</span></div>
+        <div class="ticker-item">PREMIUM CRAFTSMANSHIP <span>•</span></div>
+        <div class="ticker-item">FREE WHITE-GLOVE DELIVERY <span>•</span></div>
+        <div class="ticker-item">FREE WEIGHTS <span>•</span></div>
+        <div class="ticker-item">CARDIO GEAR <span>•</span></div>
+        <div class="ticker-item">YOGA & RECOVERY <span>•</span></div>
+        <div class="ticker-item">FUNCTIONAL RACKS <span>•</span></div>
+        <div class="ticker-item">PREMIUM CRAFTSMANSHIP <span>•</span></div>
+        <div class="ticker-item">FREE WHITE-GLOVE DELIVERY <span>•</span></div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+       3. HERO SECTION
+       ========================================================================== -->
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">Luxury Home Fitness Equipment</div>
+          <h1 class="hero-title">Build Your Dream <em>Home Gym.</em></h1>
+          <p class="hero-description">
+            Precision-engineered, compact fitness gear designed for modern luxury living spaces. Elevate your performance without compromising your interior aesthetics.
+          </p>
+          <div class="hero-actions">
+            <a href="#catalog" class="btn btn-primary btn-pulse">Explore Catalog</a>
+            <a href="#weight-guide" class="btn btn-outline">Weight Increment Guide</a>
+          </div>
+        </div>
+
+        <!-- Hero Visual with Floating Animated Element -->
+        <div class="hero-visual">
+          <div class="hero-image-wrapper">
+            <!-- EDITABLE PLACEHOLDER IMAGE -->
+            <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=1000&auto=format&fit=crop" alt="Aurelia Fit Luxury Dumbbells in modern home gym">
+            
+            <!-- Animated Floating Element -->
+            <div class="floating-dumbbell-card">
+              <div class="floating-icon">🏋️</div>
+              <div class="floating-info">
+                <h4>Aurelia Micro-Adjust Pro</h4>
+                <p>2kg - 32kg Precision increments</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       4. CATALOG WITH CSS-ONLY CATEGORY FILTER
+       ========================================================================== -->
+    <section id="catalog" class="catalog-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Curated Equipment</span>
+          <h2 class="section-title">Explore Our Precision Collection</h2>
+          <p class="section-desc">Selected weights, cardio machines, and functional accessories designed specifically for home performance.</p>
+        </div>
+
+        <!-- Pure CSS Filtering Controls (Radio Buttons) -->
+        <input type="radio" id="tab-all" name="catalog-filter" class="filter-radio" checked>
+        <input type="radio" id="tab-weights" name="catalog-filter" class="filter-radio">
+        <input type="radio" id="tab-cardio" name="catalog-filter" class="filter-radio">
+        <input type="radio" id="tab-yoga" name="catalog-filter" class="filter-radio">
+        <input type="radio" id="tab-racks" name="catalog-filter" class="filter-radio">
+
+        <!-- Tab Labels -->
+        <div class="catalog-tabs">
+          <label for="tab-all" class="catalog-tab-label">All Products</label>
+          <label for="tab-weights" class="catalog-tab-label">Free Weights</label>
+          <label for="tab-cardio" class="catalog-tab-label">Cardio</label>
+          <label for="tab-yoga" class="catalog-tab-label">Yoga & Recovery</label>
+          <label for="tab-racks" class="catalog-tab-label">Racks & Benches</label>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="catalog-grid">
+          
+          <!-- Product 1 -->
+          <article class="product-card" data-category="weights">
+            <div class="product-image-container">
+              <span class="product-badge">Bestseller</span>
+              <!-- EDITABLE IMAGE -->
+              <img src="https://images.unsplash.com/photo-1638536532686-d610adfc8e5c?q=80&w=600&auto=format&fit=crop" alt="Gold & Walnut Dumbbell Set">
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <div class="product-rating">★ ★ ★ ★ ★ <span>(48)</span></div>
+              </div>
+              <h3 class="product-title">Walnut & Brass Dumbbell Set</h3>
+              <p class="product-desc">Custom hardwood handle with champagne brass coated weight plates.</p>
+              <div><span class="product-spec">Range: 2.5kg - 25kg</span></div>
+              <div class="product-footer">
+                <span class="product-price">$850</span>
+                <button class="btn-add-cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 2 -->
+          <article class="product-card" data-category="weights">
+            <div class="product-image-container">
+              <span class="product-badge">Innovative</span>
+              <!-- EDITABLE IMAGE -->
+              <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=600&auto=format&fit=crop" alt="Adjustable Smart Dumbbell">
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <div class="product-rating">★ ★ ★ ★ ★ <span>(32)</span></div>
+              </div>
+              <h3 class="product-title">Aurelia SelectDumbbell Pro</h3>
+              <p class="product-desc">Twist-handle weight selector replacement for 10 individual dumbbell pairs.</p>
+              <div><span class="product-spec">Increments: 1.5kg micro-steps</span></div>
+              <div class="product-footer">
+                <span class="product-price">$1,120</span>
+                <button class="btn-add-cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 3 -->
+          <article class="product-card" data-category="weights">
+            <div class="product-image-container">
+              <!-- EDITABLE IMAGE -->
+              <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=600&auto=format&fit=crop" alt="Matte Black Kettlebell">
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <div class="product-rating">★ ★ ★ ★ ☆ <span>(19)</span></div>
+              </div>
+              <h3 class="product-title">Cast Bronze Handle Kettlebell</h3>
+              <p class="product-desc">Seamless ergonomic grip with high-density noise reduction rubber base.</p>
+              <div><span class="product-spec">Weight: 8kg - 32kg</span></div>
+              <div class="product-footer">
+                <span class="product-price">$240</span>
+                <button class="btn-add-cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 4 -->
+          <article class="product-card" data-category="cardio">
+            <div class="product-image-container">
+              <span class="product-badge">Quiet-Tech</span>
+              <!-- EDITABLE IMAGE -->
+              <img src="https://images.unsplash.com/photo-1519505907962-0a6cb0167c73?q=80&w=600&auto=format&fit=crop" alt="Aurelia Silent Rowing Machine">
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <div class="product-rating">★ ★ ★ ★ ★ <span>(64)</span></div>
+              </div>
+              <h3 class="product-title">Water Resistance Rower</h3>
+              <p class="product-desc">Handcrafted ash wood frame with whisper-quiet hydrodynamic drive.</p>
+              <div><span class="product-spec">Compact Vertical Storage</span></div>
+              <div class="product-footer">
+                <span class="product-price">$2,450</span>
+                <button class="btn-add-cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 5 -->
+          <article class="product-card" data-category="cardio">
+            <div class="product-image-container">
+              <!-- EDITABLE IMAGE -->
+              <img src="https://images.unsplash.com/photo-1576678927484-cc909957088c?q=80&w=600&auto=format&fit=crop" alt="Luxury Exercise Bike">
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <div class="product-rating">★ ★ ★ ★ ★ <span>(27)</span></div>
+              </div>
+              <h3 class="product-title">Aurelia Velocity Stationary Bike</h3>
+              <p class="product-desc">Magnetic resistance system with hand-stitched leather saddle.</p>
+              <div><span class="product-spec">Bluetooth Telemetry</span></div>
+              <div class="product-footer">
+                <span class="product-price">$1,890</span>
+                <button class="btn-add-cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 6 -->
+          <article class="product-card" data-category="cardio">
+            <div class="product-image-container">
+              <!-- EDITABLE IMAGE -->
+              <img src="https://images.unsplash.com/photo-1598136490941-30d885318aba?q=80&w=600&auto=format&fit=crop" alt="Sleek Modern Treadmill">
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <div class="product-rating">★ ★ ★ ★ ☆ <span>(15)</span></div>
+              </div>
+              <h3 class="product-title">Slimline Foldable Treadmill</h3>
+              <p class="product-desc">Ultra-thin modern design that folds flat under furniture or against walls.</p>
+              <div><span class="product-spec">Max Speed: 18 km/h</span></div>
+              <div class="product-footer">
+                <span class="product-price">$2,100</span>
+                <button class="btn-add-cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 7 -->
+          <article class="product-card" data-category="yoga">
+            <div class="product-image-container">
+              <span class="product-badge">Eco-Organic</span>
+              <!-- EDITABLE IMAGE -->
+              <img src="https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?q=80&w=600&auto=format&fit=crop" alt="Premium Cork Yoga Mat">
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <div class="product-rating">★ ★ ★ ★ ★ <span>(52)</span></div>
+              </div>
+              <h3 class="product-title">Organic Cork & Rubber Mat</h3>
+              <p class="product-desc">Non-slip natural grip mat with subtle gold alignment grid lines.</p>
+              <div><span class="product-spec">Thickness: 5mm Extra Cushion</span></div>
+              <div class="product-footer">
+                <span class="product-price">$140</span>
+                <button class="btn-add-cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 8 -->
+          <article class="product-card" data-category="yoga">
+            <div class="product-image-container">
+              <!-- EDITABLE IMAGE -->
+              <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=600&auto=format&fit=crop" alt="Recover Resistance Bands Set">
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <div class="product-rating">★ ★ ★ ★ ★ <span>(41)</span></div>
+              </div>
+              <h3 class="product-title">Woven Fabric Resistance Set</h3>
+              <p class="product-desc">Snag-free luxury fabric bands in champagne and deep navy colorways.</p>
+              <div><span class="product-spec">5 Resistance Levels</span></div>
+              <div class="product-footer">
+                <span class="product-price">$95</span>
+                <button class="btn-add-cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 9 -->
+          <article class="product-card" data-category="yoga">
+            <div class="product-image-container">
+              <!-- EDITABLE IMAGE -->
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop" alt="Vibrating Recovery Foam Roller">
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <div class="product-rating">★ ★ ★ ★ ☆ <span>(22)</span></div>
+              </div>
+              <h3 class="product-title">Vibrating Recovery Roller</h3>
+              <p class="product-desc">Targeted deep tissue therapy with 4 adjustable vibration frequencies.</p>
+              <div><span class="product-spec">Rechargeable Li-Ion</span></div>
+              <div class="product-footer">
+                <span class="product-price">$180</span>
+                <button class="btn-add-cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 10 -->
+          <article class="product-card" data-category="racks">
+            <div class="product-image-container">
+              <span class="product-badge">Architectural</span>
+              <!-- EDITABLE IMAGE -->
+              <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format&fit=crop" alt="Compact Power Rack">
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <div class="product-rating">★ ★ ★ ★ ★ <span>(18)</span></div>
+              </div>
+              <h3 class="product-title">Minimalist Wall Power Rack</h3>
+              <p class="product-desc">Folds flush against the wall when not in use. Heavy-gauge steel build.</p>
+              <div><span class="product-spec">Max Weight: 450kg</span></div>
+              <div class="product-footer">
+                <span class="product-price">$1,450</span>
+                <button class="btn-add-cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 11 -->
+          <article class="product-card" data-category="racks">
+            <div class="product-image-container">
+              <!-- EDITABLE IMAGE -->
+              <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=600&auto=format&fit=crop" alt="Adjustable Weight Bench">
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <div class="product-rating">★ ★ ★ ★ ★ <span>(35)</span></div>
+              </div>
+              <h3 class="product-title">Leather Incline Workout Bench</h3>
+              <p class="product-desc">7 inclination settings with hand-stitched leather padding and brass hardware.</p>
+              <div><span class="product-spec">7 Incline Positions</span></div>
+              <div class="product-footer">
+                <span class="product-price">$680</span>
+                <button class="btn-add-cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 12 -->
+          <article class="product-card" data-category="racks">
+            <div class="product-image-container">
+              <!-- EDITABLE IMAGE -->
+              <img src="https://images.unsplash.com/photo-1590487988256-9ed24133863e?q=80&w=600&auto=format&fit=crop" alt="Vertical Dumbbell Tower">
+            </div>
+            <div class="product-content">
+              <div class="product-meta">
+                <div class="product-rating">★ ★ ★ ★ ☆ <span>(14)</span></div>
+              </div>
+              <h3 class="product-title">Vertical Dumbbell Storage Tower</h3>
+              <p class="product-desc">Space-saving vertical tree holds up to 10 pairs of Aurelia weights.</p>
+              <div><span class="product-spec">Compact Footprint: 0.2m²</span></div>
+              <div class="product-footer">
+                <span class="product-price">$390</span>
+                <button class="btn-add-cart">Add to Cart</button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       5. DUMBBELL WEIGHT INCREMENT GUIDE (INTERACTIVE CSS-ONLY)
+       ========================================================================== -->
+    <section id="weight-guide" class="guide-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Interactive Assistant</span>
+          <h2 class="section-title">Dumbbell Weight & Progression Guide</h2>
+          <p class="section-desc">Select your experience level to view recommended progression steps, plate increments, and equipment selection.</p>
+        </div>
+
+        <!-- Hidden Radio controls for experience selection -->
+        <input type="radio" id="guide-beginner" name="guide-level" class="guide-radio" checked>
+        <input type="radio" id="guide-intermediate" name="guide-level" class="guide-radio">
+        <input type="radio" id="guide-advanced" name="guide-level" class="guide-radio">
+
+        <!-- Selector Labels -->
+        <div class="guide-selector-wrap">
+          <label for="guide-beginner" class="guide-label">Beginner / Toning</label>
+          <label for="guide-intermediate" class="guide-label">Intermediate / Hypertrophy</label>
+          <label for="guide-advanced" class="guide-label">Advanced / Strength</label>
+        </div>
+
+        <!-- Dynamic Content Box -->
+        <div class="guide-content-box">
+          
+          <!-- Panel 1: Beginner -->
+          <div id="panel-beginner" class="guide-panel">
+            <div class="guide-panel-grid">
+              <div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.75rem; margin-bottom: 1rem;">Foundation & Form Setup</h3>
+                <p style="color: var(--color-text-muted);">Ideal for individuals starting strength training or focusing on endurance, mobility, and core movement mechanics.</p>
+                
+                <ul class="guide-info-list">
+                  <li class="guide-info-item">
+                    <span class="guide-info-icon">1</span>
+                    <div>
+                      <strong>Recommended Weight Range:</strong> 2kg to 10kg pairs.
+                    </div>
+                  </li>
+                  <li class="guide-info-item">
+                    <span class="guide-info-icon">2</span>
+                    <div>
+                      <strong>Micro-Increments:</strong> 1kg micro-plates to allow steady, safe progression without straining joints.
+                    </div>
+                  </li>
+                  <li class="guide-info-item">
+                    <span class="guide-info-icon">3</span>
+                    <div>
+                      <strong>Band Level:</strong> Light to Medium resistance bands for warmup activation.
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <table class="comparison-table">
+                  <thead>
+                    <tr>
+                      <th>Exercise Type</th>
+                      <th>Starter Weight</th>
+                      <th>Progression Step</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Upper Body (Press/Row)</td>
+                      <td>4kg - 6kg</td>
+                      <td>+1kg / fortnight</td>
+                    </tr>
+                    <tr>
+                      <td>Lower Body (Squat/Lunge)</td>
+                      <td>6kg - 10kg</td>
+                      <td>+1.5kg / fortnight</td>
+                    </tr>
+                    <tr>
+                      <td>Isolation (Curls/Flyes)</td>
+                      <td>2kg - 4kg</td>
+                      <td>+0.5kg / month</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 2: Intermediate -->
+          <div id="panel-intermediate" class="guide-panel">
+            <div class="guide-panel-grid">
+              <div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.75rem; margin-bottom: 1rem;">Hypertrophy & Conditioning</h3>
+                <p style="color: var(--color-text-muted);">Designed for regular fitness enthusiasts aiming to build lean muscle mass, power, and high-density workouts.</p>
+                
+                <ul class="guide-info-list">
+                  <li class="guide-info-item">
+                    <span class="guide-info-icon">1</span>
+                    <div>
+                      <strong>Recommended Weight Range:</strong> 8kg to 22kg pairs.
+                    </div>
+                  </li>
+                  <li class="guide-info-item">
+                    <span class="guide-info-icon">2</span>
+                    <div>
+                      <strong>Micro-Increments:</strong> 2kg steps with fast-switching dial mechanism.
+                    </div>
+                  </li>
+                  <li class="guide-info-item">
+                    <span class="guide-info-icon">3</span>
+                    <div>
+                      <strong>Band Level:</strong> Medium to Heavy fabric loop bands for isolation overload.
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <table class="comparison-table">
+                  <thead>
+                    <tr>
+                      <th>Exercise Type</th>
+                      <th>Target Weight</th>
+                      <th>Progression Step</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Upper Body (Press/Row)</td>
+                      <td>12kg - 18kg</td>
+                      <td>+2kg / month</td>
+                    </tr>
+                    <tr>
+                      <td>Lower Body (Squat/Lunge)</td>
+                      <td>16kg - 24kg</td>
+                      <td>+2.5kg / month</td>
+                    </tr>
+                    <tr>
+                      <td>Isolation (Curls/Flyes)</td>
+                      <td>8kg - 12kg</td>
+                      <td>+1kg / month</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 3: Advanced -->
+          <div id="panel-advanced" class="guide-panel">
+            <div class="guide-panel-grid">
+              <div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.75rem; margin-bottom: 1rem;">Max Power & Heavy Strength</h3>
+                <p style="color: var(--color-text-muted);">Built for experienced athletes and lifters requiring maximum load capability and robust heavy-duty equipment.</p>
+                
+                <ul class="guide-info-list">
+                  <li class="guide-info-item">
+                    <span class="guide-info-icon">1</span>
+                    <div>
+                      <strong>Recommended Weight Range:</strong> 15kg to 40kg+ pairs.
+                    </div>
+                  </li>
+                  <li class="guide-info-item">
+                    <span class="guide-info-icon">2</span>
+                    <div>
+                      <strong>Micro-Increments:</strong> 2.5kg to 5kg progression steps.
+                    </div>
+                  </li>
+                  <li class="guide-info-item">
+                    <span class="guide-info-icon">3</span>
+                    <div>
+                      <strong>Band Level:</strong> Extra-Heavy latex-core resistance bands for assisted reps.
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <table class="comparison-table">
+                  <thead>
+                    <tr>
+                      <th>Exercise Type</th>
+                      <th>Target Weight</th>
+                      <th>Progression Step</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Upper Body (Press/Row)</td>
+                      <td>24kg - 36kg</td>
+                      <td>+2.5kg cycle</td>
+                    </tr>
+                    <tr>
+                      <td>Lower Body (Squat/Lunge)</td>
+                      <td>32kg - 44kg+</td>
+                      <td>+5kg cycle</td>
+                    </tr>
+                    <tr>
+                      <td>Isolation (Curls/Flyes)</td>
+                      <td>14kg - 20kg</td>
+                      <td>+1.5kg cycle</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       6. COMPACT HOME GYM SETUP BUNDLES
+       ========================================================================== -->
+    <section id="bundles" class="bundles-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Curated Bundles</span>
+          <h2 class="section-title">Compact Home Gym Packages</h2>
+          <p class="section-desc">Complete, space-efficient fitness setups tailored for apartments, home studios, and luxury suites.</p>
+        </div>
+
+        <div class="bundles-grid">
+          
+          <!-- Bundle 1 -->
+          <div class="bundle-card">
+            <h3 class="bundle-name">Essentials Pack</h3>
+            <p class="bundle-desc">Perfect compact setup for minimal space environments.</p>
+            <div class="bundle-price">$1,250 <span>/ complete set</span></div>
+            <ul class="bundle-features">
+              <li>Pair of SelectDumbbells (2kg - 18kg)</li>
+              <li>Organic Cork Yoga & Stretch Mat</li>
+              <li>Woven Resistance Bands Set</li>
+              <li>Vertical Compact Storage Base</li>
+              <li>Standard 2-Year Warranty</li>
+            </ul>
+            <a href="#catalog" class="btn btn-outline" style="width: 100%;">Select Essentials</a>
+          </div>
+
+          <!-- Bundle 2 (Highlighted) -->
+          <div class="bundle-card popular">
+            <span class="popular-tag">Most Popular</span>
+            <h3 class="bundle-name">Pro Studio Bundle</h3>
+            <p class="bundle-desc">Comprehensive versatility for strength, cardio, and mobility.</p>
+            <div class="bundle-price">$2,950 <span>/ complete set</span></div>
+            <ul class="bundle-features">
+              <li>Full Dumbbell Set (2.5kg - 30kg)</li>
+              <li>Leather Incline Workout Bench</li>
+              <li>Silent Water Resistance Rower</li>
+              <li>Fabric Resistance & Foam Roller Set</li>
+              <li>Free White-Glove Installation</li>
+              <li>Lifetime Structural Warranty</li>
+            </ul>
+            <a href="#catalog" class="btn btn-primary" style="width: 100%;">Select Pro Studio</a>
+          </div>
+
+          <!-- Bundle 3 -->
+          <div class="bundle-card">
+            <h3 class="bundle-name">Elite Performance Suite</h3>
+            <p class="bundle-desc">Uncompromised strength and endurance setup for dedicated spaces.</p>
+            <div class="bundle-price">$4,850 <span>/ complete set</span></div>
+            <ul class="bundle-features">
+              <li>Full Walnut & Brass Dumbbell Array</li>
+              <li>Minimalist Wall Folding Power Rack</li>
+              <li>Velocity Stationary Bike</li>
+              <li>Cast Bronze Kettlebell Set (8-24kg)</li>
+              <li>Custom Floor Layout Consultation</li>
+              <li>Priority Concierge Service</li>
+            </ul>
+            <a href="#catalog" class="btn btn-outline" style="width: 100%;">Select Elite Suite</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+       7. WHY CHOOSE US
+       ========================================================================== -->
+    <section id="why-us" class="why-section">
+      <div class="container">
+        <div class="features-grid">
+          
+          <div class="feature-card">
+            <div class="feature-icon-wrap">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+            </div>
+            <h3 class="feature-title">Luxury Build Quality</h3>
+            <p class="feature-desc">Crafted with aircraft-grade aluminum, brass accents, and sustainably sourced hardwood.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrap">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+            </div>
+            <h3 class="feature-title">Space-Saving Design</h3>
+            <p class="feature-desc">Engineered specifically for luxury residences, taking up minimal square footage.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon-wrap">
+              <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0
